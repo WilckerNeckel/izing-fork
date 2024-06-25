@@ -7,7 +7,7 @@ import helmet from "helmet";
 import { logger } from "../utils/logger";
 
 export default async function express(app: Application): Promise<void> {
-  const origin = process.env.FRONTEND_URL || "https://app.izing.io";
+  const origin = [process.env.FRONTEND_URL || "https://app.izing.io"];
   app.use(
     cors({
       origin,
@@ -31,8 +31,15 @@ export default async function express(app: Application): Promise<void> {
           "style-src": ["'self'", "https:", "'unsafe-inline'"],
           "upgrade-insecure-requests": [],
           // ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-          scriptSrc: ["'self'", origin],
-          frameAncestors: ["'self'", origin]
+          scriptSrc: [
+            "'self'",
+            `*${process.env.FRONTEND_URL || "localhost: 3101"}`
+            // "localhost"
+          ],
+          frameAncestors: [
+            "'self'",
+            `* ${process.env.FRONTEND_URL || "localhost: 3101"}`
+          ]
         }
       })
     );
