@@ -1,0 +1,51 @@
+
+## BANCOS
+
+docker run --name postgresql-zdg -e POSTGRES_USER=izing -e POSTGRES_PASSWORD=password -e TZ="America/Sao_Paulo" --restart=always -p 5432:5432 -v /data:/var/lib/postgresql/datazdgizing -d postgres
+
+docker run -e TZ="America/Sao_Paulo" --name redis-zdg -p 6379:6379 -d --restart=always redis:latest redis-server --appendonly yes --requirepass "password"
+
+docker run -d --name rabbitmq-zdg -p 5672:5672 -p 15672:15672 --restart=always --hostname rabbitmq -v /data:/var/lib/rabbitmq rabbitmq:3-management-alpine
+
+====================================
+
+git clone https://github.com/ldurans/izing.open.io.git
+
+## BACKEND:
+
+npm install
+npm run build
+npx sequelize db:migrate
+npx sequelize db:seed:all
+npm start
+ou
+pm2 start dist/server.js
+
+====================================
+
+## FRONTEND:
+
+npm install
+npx quasar build -P -m pwa
+npx quasar dev
+git clone https://github.com/pedroherpeto/whaticket.git
+
+### ABRIR GIT CMD
+cd Desktop
+cd whaticket
+
+### BACKEND
+cd backend
+npm install
+npm run build
+npx sequelize db:migrate
+npx sequelize db:seed:all
+npm start
+ou
+pm2 start dist/server.js
+
+### FRONTEND
+cd frontend
+npm install --force
+npm quasar build -P -m pwa
+npx quasar dev
