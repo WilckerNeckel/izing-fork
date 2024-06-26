@@ -5,7 +5,7 @@ import "express-async-errors";
 import "./config-env";
 import { createServer } from "http";
 import { env } from "process";
-import express from "express";
+import express from "./express";
 import GracefulShutdown from "http-graceful-shutdown";
 import bootstrap from "./boot";
 import { initIO } from "../libs/socket";
