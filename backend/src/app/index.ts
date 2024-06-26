@@ -10,6 +10,7 @@ import GracefulShutdown from "http-graceful-shutdown";
 import bootstrap from "./boot";
 import { initIO } from "../libs/socket";
 import { StartAllWhatsAppsSessions } from "../services/WbotServices/StartAllWhatsAppsSessions";
+import cors from "cors";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default async function application() {

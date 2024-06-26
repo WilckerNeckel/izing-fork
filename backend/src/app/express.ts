@@ -10,7 +10,7 @@ export default async function express(app: Application): Promise<void> {
   const origin = [process.env.FRONTEND_URL || "https://app.izing.io"];
   app.use(
     cors({
-      origin,
+      origin: "*",
       credentials: true
     })
   );
